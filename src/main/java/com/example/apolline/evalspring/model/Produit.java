@@ -23,13 +23,19 @@ public class Produit {
     @Positive(message = "Le prix doit être supérieur à zéro.")
     private Double prix;
 
+    // Association ManyToOne avec Categorie
+    @ManyToOne
+    @JoinColumn(name = "categorie_id", nullable = false)
+    private Categorie categorie;
+
     // Constructeurs
     public Produit() {
     }
 
-    public Produit(String nom, Double prix) {
+    public Produit(String nom, Double prix , Categorie categorie) {
         this.nom = nom;
         this.prix = prix;
+        this.categorie = categorie;
     }
 
     // Getters et Setters
@@ -55,5 +61,13 @@ public class Produit {
 
     public void setPrix(Double prix) {
         this.prix = prix;
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 }
